@@ -1,11 +1,9 @@
-using System.ComponentModel.DataAnnotations;
+using casa_app_backend.Domain.Enums;
 
-namespace casa_app_backend.Models
+namespace casa_app_backend.Domain.Models
 {
-    public class Vehicle
+    public class Vehicle : Entity
     {
-        [Key]
-        public int Id { get; set; }
         public string Name { get; set; } = null!;
         public VehicleType Type { get; set; }
         public bool AssignTask { get; set; } = true;
@@ -14,10 +12,5 @@ namespace casa_app_backend.Models
         public virtual List<ToDo>? ToDos { get; set; }
     }
 
-    public enum VehicleType
-    {
-        CAR,
-        MOTORCYCLE,
-        BIKE
-    }
+   
 }

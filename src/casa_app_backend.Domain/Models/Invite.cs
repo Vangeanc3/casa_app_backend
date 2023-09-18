@@ -1,11 +1,9 @@
-using System.ComponentModel.DataAnnotations;
+using casa_app_backend.Domain.Enums;
 
-namespace casa_app_backend.Models
+namespace casa_app_backend.Domain.Models
 {
-    public class Invite
+    public class Invite : Entity
     {
-        [Key]
-        public int Id { get; set; }        
         public DateTime CreatedAt { get; set; }
         public DateTime Expiration { get; set; }
         public bool? IsAccepted { get; set; } = null;

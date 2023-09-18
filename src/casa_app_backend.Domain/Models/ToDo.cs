@@ -1,8 +1,9 @@
-namespace casa_app_backend.Models
+using casa_app_backend.Domain.Enums;
+
+namespace casa_app_backend.Domain.Models
 {
-    public class ToDo
+    public class ToDo : Entity
     {
-        public Guid Id { get; set; } // UUID
         public string Nome { get; set; } = null!;
         public string Descricao { get; set; } = null!;
         public int CreatedById { get; set; }
@@ -26,34 +27,5 @@ namespace casa_app_backend.Models
         public virtual Vehicle? Vehicle { get; set; }
         public int? PlaceId { get; set; }
         public virtual Place? Place { get; set; }
-    }
-
-    public enum RecurringTask
-    {
-        NONE,
-        DAILY,
-        WEEKLY,
-        QUINZENALLY,
-        MONTHLY,
-        SEMESTERLY,
-        YEARLY
-    }
-
-    public enum ToDoType
-    {
-        CLEANING,
-        PAYMENT,
-        SHOPPING,
-        MEAL,
-        ACTIVITY,
-        OTHER
-    }
-
-    public enum ToDoStatus
-    {
-        PENDING,
-        DOING,
-        DONE,
-        CANCELED
     }
 }

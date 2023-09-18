@@ -1,11 +1,9 @@
-using System.ComponentModel.DataAnnotations;
+using casa_app_backend.Domain.Enums;
 
-namespace casa_app_backend.Models
+namespace casa_app_backend.Domain.Models
 {
-    public class ToDoDefault
+    public class ToDoDefault : Entity
     {
-        [Key]
-        public Guid Id { get; set; } // UUID
         public string Nome { get; set; } = null!;
         public string Descricao { get; set; } = null!;
         public ToDoStatus Status { get; set; } = ToDoStatus.PENDING;

@@ -1,11 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
-namespace casa_app_backend.Models
+namespace casa_app_backend.Domain.Models
 {
-    public class Contract
+    public class Contract : Entity
     {
-        [Key]
-        public int Id { get; set; }
         public string Name { get; set; } = null!;
         public virtual List<User> UsersOfContract { get; set; } = null!;   
         public virtual List<Invite>? Invites { get; set; }     

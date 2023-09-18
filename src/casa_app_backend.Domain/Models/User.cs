@@ -1,12 +1,9 @@
-using System.ComponentModel.DataAnnotations;
+using casa_app_backend.Domain.Enums;
 
-namespace casa_app_backend.Models
+namespace casa_app_backend.Domain.Models
 {
-    public class User
+    public class User : Entity
     {
-        [Required]
-        [Key]
-        public int Id { get; set; }
         public string Name { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!; // Verificar Depois
