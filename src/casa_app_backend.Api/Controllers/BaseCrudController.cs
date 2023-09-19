@@ -1,44 +1,93 @@
 using AutoMapper;
+using casa_app_backend.Api.ViewModels;
+using casa_app_backend.Application.Interfaces.Services;
+using casa_app_backend.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace casa_app_backend.Api.Controllers
 {
-    public abstract class BaseCrudController : ApiController
+    public abstract class BaseCrudController<T, TVm, TNovo, TEditar> : ApiController where T : Entity, new()
     {
-        public BaseCrudController(IMapper mapper) : base(mapper)
+        // O init significa que o servico só pode ser setado durante a inicialização do objeto, ou seja, no contrustor
+        protected IBaseService<T> baseService { get; init; }
+        public BaseCrudController(IMapper mapper, IBaseService<T> baseService) : base(mapper)
         {
+            this.baseService = baseService;
         }
 
-
-
         [HttpGet("list")]
-        public abstract async Task<IActionResult> List()
+        [ProducesResponseType(typeof(RetornoPadrao<string>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(RetornoPadrao<string>), StatusCodes.Status500InternalServerError)]
+        public virtual async Task<IActionResult> List()
         {
-            // VALIDAR E CHAMAR O SERVIÇO
+            if (!ModelState.IsValid)
+            {
+                return RespondModelStateInvalid();
+            }
+
+            var result = await baseService.List();
+            // Realizer o mapeamento para retorna a VM
+            return RespondOk(mapper.Map<List<TVm>>(result));
         }
 
         [HttpGet("get")]
-        public virtual async Task<IActionResult> Get()
+        [ProducesResponseType(typeof(RetornoPadrao<string>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(RetornoPadrao<string>), StatusCodes.Status500InternalServerError)]
+        public virtual async Task<IActionResult> Get(int id)
         {
-            // VALIDAR E CHAMAR O SERVIÇO
+            if (!ModelState.IsValid)
+            {
+                return RespondModelStateInvalid();
+            }
+
+            var result = await baseService.Get(id);
+            return RespondOk(mapper.Map<TVm>(result));
         }
 
         [HttpPost("create")]
-        public virtual async Task<IActionResult> Create()
+        [ProducesResponseType(typeof(RetornoPadrao<string>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(RetornoPadrao<string>), StatusCodes.Status500InternalServerError)]
+        public virtual async Task<IActionResult> Create(TNovo vm)
         {
+            if (!ModelState.IsValid)
+            {
+                return RespondModelStateInvalid();
+            }
 
+            await baseService.Create(mapper.Map<T>(vm));
+            return RespondOk(true);
         }
 
         [HttpPut("update")]
-        public virtual async Task<IActionResult> Update()
+        [ProducesResponseType(typeof(RetornoPadrao<string>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(RetornoPadrao<string>), StatusCodes.Status500InternalServerError)]
+        public virtual async Task<IActionResult> Update(TEditar vm)
         {
+            if (!ModelState.IsValid)
+            {
+                return RespondModelStateInvalid();
+            }
 
+            await baseService.Update(mapper.Map<T>(vm));
+
+            return RespondOk(true);
         }
 
         [HttpDelete("delete")]
-        public virtual async Task<IActionResult> Delete()
+        [ProducesResponseType(typeof(RetornoPadrao<string>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(RetornoPadrao<string>), StatusCodes.Status500InternalServerError)]
+        public virtual async Task<IActionResult> Delete(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return RespondModelStateInvalid();
+            }
 
+            await baseService.Delete(id);
+
+            return RespondOk(true);
         }
     }
 }

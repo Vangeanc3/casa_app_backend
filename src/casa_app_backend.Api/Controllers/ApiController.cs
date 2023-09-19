@@ -23,6 +23,7 @@ namespace casa_app_backend.Api.Controllers
         {
             var error = ModelState.Values.SelectMany(e => e.Errors).LastOrDefault();
 
+            // Verificar se existi um erro e retorna a mensagem de erro adequada    
             return BadRequest(new RetornoPadrao<string>(false, !string.IsNullOrEmpty(error?.ErrorMessage) ? error.ErrorMessage : (error?.Exception?.Message ?? string.Empty)));
         }
     }
