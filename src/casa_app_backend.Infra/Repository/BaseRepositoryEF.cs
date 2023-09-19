@@ -1,5 +1,5 @@
-using System.Linq.Expressions;
 using casa_app_backend.Application.Interfaces.Repository;
+using casa_app_backend.Domain.Exceptions;
 using casa_app_backend.Domain.Models;
 using casa_app_backend.Infra.Context;
 using Microsoft.EntityFrameworkCore;
@@ -20,27 +20,43 @@ namespace casa_app_backend.Infra.Repository
         {
             return await dbSet.AsNoTracking().ToListAsync();
         }
-        public Task<T> Get(int id)
+        public virtual async Task<T> Get(int id)
         {
-            throw new NotImplementedException();
+            return await dbSet.FindAsync(id) ?? throw new BusinessException($"Registro {id} não encontrado");
         }
-        public Task Create(T request)
+        public virtual async Task Create(T entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-        public Task Update(T request)
-        {
-            throw new NotImplementedException();
+            await dbSet.AddAsync(entity);
+            await SaveChanges();
         }
 
+        public virtual async Task Delete(int id)
+        {
+            // OLHAR DEPOIS ISSO
+            dbSet.Remove(new T { Id = id });
+            await SaveChanges();
+        }
+        public virtual async Task Update(T entity)
+        {
+            dbSet.Update(entity);
+            await SaveChanges();
+        }
+        public virtual async Task<int> SaveChanges()
+        {
+            return await db.SaveChangesAsync();
+        }
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
         }
     }
 }

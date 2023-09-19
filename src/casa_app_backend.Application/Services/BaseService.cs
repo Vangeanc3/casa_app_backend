@@ -1,3 +1,4 @@
+using casa_app_backend.Application.Interfaces.Repository;
 using casa_app_backend.Application.Interfaces.Services;
 using casa_app_backend.Domain.Models;
 
@@ -5,29 +6,36 @@ namespace casa_app_backend.Application.Services
 {
     public class BaseService<T> : IBaseService<T> where T : Entity, new()
     {
-        public Task Create(T request)
+        protected readonly IBaseRepositoryEF<T> baseRepository;
+
+        public BaseService(IBaseRepositoryEF<T> baseRepository)
         {
-            throw new NotImplementedException();
+            this.baseRepository = baseRepository;
         }
 
-        public Task Delete(int id)
+        public virtual async Task Create(T entity)
         {
-            throw new NotImplementedException();
+            await baseRepository.Create(entity);
         }
 
-        public Task<T> Get(int id)
+        public virtual async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            await baseRepository.Delete(id);
         }
 
-        public Task<List<T>> List()
+        public virtual async Task<T> Get(int id)
         {
-            throw new NotImplementedException();
+            return await baseRepository.Get(id);
         }
 
-        public Task Update(T request)
+        public virtual async Task<List<T>> List()
         {
-            throw new NotImplementedException();
+            return await baseRepository.List();
+        }
+
+        public virtual async Task Update(T entity)
+        {
+            await baseRepository.Update(entity);
         }
     }
 }
