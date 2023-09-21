@@ -1,6 +1,6 @@
 using AutoMapper;
-using casa_app_backend.Data.Dtos.WorkerDto;
-using casa_app_backend.Models;
+using casa_app_backend.Api.ViewModels;
+using casa_app_backend.Domain.Models;
 
 namespace casa_app_backend.Profiles
 {
@@ -8,9 +8,9 @@ namespace casa_app_backend.Profiles
     {
         public WorkerProfile()
         {
-            CreateMap<CreateWorkerDto, Worker>();
-            CreateMap<PutWorkerDto, Worker>();
-            CreateMap<Worker, ReadWorkerDto>()
+            CreateMap<VehicleNewVm, Worker>();
+            CreateMap<WorkerUpdateVm, Worker>();
+            CreateMap<Worker, WorkerVm>()
             .ForMember(w => w.House, opts => opts
             .MapFrom(w => new { w.House.Id, w.House.Name }));
         }

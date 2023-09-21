@@ -1,6 +1,6 @@
 using AutoMapper;
-using casa_app_backend.Data.Dtos.VehicleDto;
-using casa_app_backend.Models;
+using casa_app_backend.Api.ViewModels;
+using casa_app_backend.Domain.Models;
 
 namespace casa_app_backend.Profiles
 {
@@ -8,9 +8,9 @@ namespace casa_app_backend.Profiles
     {
         public VehicleProfile()
         {
-              CreateMap<CreateVehicleDto, Vehicle>();
-            CreateMap<PutVehicleDto, Vehicle>();
-            CreateMap<Vehicle, ReadVehicleDto>()
+              CreateMap<ToDoNewVm, Vehicle>();
+            CreateMap<VehicleUpdateVm, Vehicle>();
+            CreateMap<Vehicle, VehicleVm>()
             .ForMember(v => v.House, opts => opts
             .MapFrom(v => new { v.House.Id, v.House.Name }));
         }

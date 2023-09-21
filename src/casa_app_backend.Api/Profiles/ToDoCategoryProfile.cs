@@ -1,6 +1,6 @@
 using AutoMapper;
-using casa_app_backend.Data.Dtos.TaskCategoryDto;
-using casa_app_backend.Models;
+using casa_app_backend.Api.ViewModels;
+using casa_app_backend.Domain.Models;
 
 namespace casa_app_backend.Profiles
 {
@@ -8,9 +8,9 @@ namespace casa_app_backend.Profiles
     {
         public ToDoCategoryProfile()
         {
-            CreateMap<CreateToDoCategoryDto, ToDoCategory>();
-            CreateMap<PutToDoCategoryDto, ToDoCategory>();
-            CreateMap<ToDoCategory, ReadToDoCategoryDto>()
+            CreateMap<ToDoCategoryNewVm, ToDoCategory>();
+            CreateMap<ToDoCategoryUpdateVm, ToDoCategory>();
+            CreateMap<ToDoCategory, ToDoCategoryVm>()
             .ForMember(t => t.Categories, opts => opts
             .MapFrom(c => c.Categories!
             .Select(c => new { c.Id, c.Name })))

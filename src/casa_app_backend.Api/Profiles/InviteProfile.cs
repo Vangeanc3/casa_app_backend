@@ -1,6 +1,6 @@
 using AutoMapper;
-using casa_app_backend.Data.Dtos.InviteDto;
-using casa_app_backend.Models;
+using casa_app_backend.Api.ViewModels;
+using casa_app_backend.Domain.Models;
 
 namespace casa_app_backend.Profiles
 {
@@ -8,8 +8,8 @@ namespace casa_app_backend.Profiles
     {
         public InviteProfile()
         {
-            CreateMap<CreateInviteDto, Invite>();
-            CreateMap<Invite, ReadInviteDto>()
+            CreateMap<InviteNewVm, Invite>();
+            CreateMap<Invite, InviteVm>()
                 .ForMember(i => i.Contract, opts => opts
                 .MapFrom(i => new { i.ContractId, i.Contract.Name  }));
 

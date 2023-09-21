@@ -1,6 +1,6 @@
 using AutoMapper;
-using casa_app_backend.Data.Dtos.HouseDto;
-using casa_app_backend.Models;
+using casa_app_backend.Api.ViewModels;
+using casa_app_backend.Domain.Models;
 
 namespace casa_app_backend.Profiles
 {
@@ -8,9 +8,9 @@ namespace casa_app_backend.Profiles
     {
         public HouseProfile()
         {
-            CreateMap<CreateHouseDto, HouseConfig>();
-            CreateMap<PutHouseDto, HouseConfig>();
-            CreateMap<HouseConfig, ReadHouseDto>()
+            CreateMap<HouseConfigNewVm, HouseConfig>();
+            CreateMap<HouseConfigUpdateVm, HouseConfig>();
+            CreateMap<HouseConfig, HouseConfigVm>()
             .ForMember(h => h.Pets, opts => opts
             .MapFrom(h => h.Pets
             .Select(p => new { p.Id, p.Name, p.Type })))

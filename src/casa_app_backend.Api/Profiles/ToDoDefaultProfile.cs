@@ -1,6 +1,6 @@
 using AutoMapper;
-using casa_app_backend.Data.Dtos.ToDoDefaultDto;
-using casa_app_backend.Models;
+using casa_app_backend.Api.ViewModels;
+using casa_app_backend.Domain.Models;
 
 namespace casa_app_backend.Profiles
 {
@@ -8,7 +8,7 @@ namespace casa_app_backend.Profiles
     {
         public ToDoDefaultProfile()
         {
-            CreateMap<ToDoDefault, ReadToDoDefaultDto>();
+            CreateMap<ToDoDefault, ToDoVm>();
             // .ForMember(t => t.Category, opts => opts
             // .MapFrom(t => new { t.CategoryId, t.Category.Name }));
         }

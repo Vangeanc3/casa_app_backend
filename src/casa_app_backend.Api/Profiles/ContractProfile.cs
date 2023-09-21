@@ -1,6 +1,6 @@
 using AutoMapper;
-using casa_app_backend.Data.Dtos.ContractDto;
-using casa_app_backend.Models;
+using casa_app_backend.Api.ViewModels;
+using casa_app_backend.Domain.Models;
 
 namespace casa_app_backend.Profiles
 {
@@ -8,8 +8,8 @@ namespace casa_app_backend.Profiles
     {
         public ContractProfile()
         {
-            CreateMap<CreateContractDto, Contract>();
-            CreateMap<Contract, ReadContractDto>()
+            CreateMap<ContractNewVm, Contract>();
+            CreateMap<Contract, ContractVm>()
                 .ForMember(c => c.UsersOfContract, opts => opts
                 .MapFrom(c => c.UsersOfContract
                 .Select(u => new { u.Id ,u.Name, u.IsOwner })));
