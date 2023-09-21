@@ -11,6 +11,4 @@ namespace casa_app_backend.Domain.Models
         public virtual HouseConfig House { get; set; } = null!;
         public virtual List<ToDo>? ToDos { get; set; }
     }
-
-   
 }
