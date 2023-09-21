@@ -5,7 +5,7 @@ using casa_app_backend.Infra.Repository;
 using casa_app_backend.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace casa_app_backend.Infra
+namespace casa_app_backend.Infra.Configurations
 {
     public static class InfraConfig
     {

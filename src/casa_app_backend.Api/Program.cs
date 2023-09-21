@@ -1,4 +1,4 @@
-using casa_app_backend.Infra;
+using casa_app_backend.Infra.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +8,8 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddJwtConfig(builder.Configuration);
+builder.Services.AddDbConfig(builder.Configuration);
 builder.Services.AddInfra();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
