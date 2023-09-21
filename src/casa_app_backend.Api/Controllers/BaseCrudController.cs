@@ -3,12 +3,10 @@ using casa_app_backend.Api.ViewModels;
 using casa_app_backend.Application.Interfaces.Services;
 using casa_app_backend.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace casa_app_backend.Api.Controllers
 {
-    public abstract class BaseCrudController<T, TVm, TNovo, TEditar> : ApiController where T : Entity, new()
+    public abstract class BaseCrudController<T, TVm, TNew, TUpdate> : ApiController where T : Entity, new()
     {
         // O init significa que o servico só pode ser setado durante a inicialização do objeto, ou seja, no contrustor
         protected IBaseService<T> baseService { get; init; }
@@ -49,7 +47,7 @@ namespace casa_app_backend.Api.Controllers
         [HttpPost("create")]
         [ProducesResponseType(typeof(RetornoPadrao<string>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(RetornoPadrao<string>), StatusCodes.Status500InternalServerError)]
-        public virtual async Task<IActionResult> Create(TNovo vm)
+        public virtual async Task<IActionResult> Create(TNew vm)
         {
             if (!ModelState.IsValid)
             {
@@ -63,7 +61,7 @@ namespace casa_app_backend.Api.Controllers
         [HttpPut("update")]
         [ProducesResponseType(typeof(RetornoPadrao<string>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(RetornoPadrao<string>), StatusCodes.Status500InternalServerError)]
-        public virtual async Task<IActionResult> Update(TEditar vm)
+        public virtual async Task<IActionResult> Update(TUpdate vm)
         {
             if (!ModelState.IsValid)
             {

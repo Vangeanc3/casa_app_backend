@@ -4,4 +4,14 @@ namespace casa_app_backend.Api.ViewModels
     {
         
     }
+
+    public class UserNewVm
+    {
+
+    }
+
+    public class UserUpdateVm
+    {
+
+    }
 }
