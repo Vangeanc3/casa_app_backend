@@ -1,4 +1,4 @@
-using casa_app_backend.Models;
+using casa_app_backend.Domain.Models;
 
 namespace casa_app_backend.Application.Interfaces
 {

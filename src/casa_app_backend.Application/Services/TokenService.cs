@@ -2,7 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using casa_app_backend.Application.Interfaces;
-using casa_app_backend.Models;
+using casa_app_backend.Domain.Models;
 using casa_app_backend.Settings;
 using Microsoft.IdentityModel.Tokens;
 
