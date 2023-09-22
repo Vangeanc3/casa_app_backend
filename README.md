@@ -22,3 +22,7 @@
 
 - criar o docker file
 - criar o template de tarefas
+
+dotnet-ef migrations add "sql_serve_migration" -p .\casa_app_backend.Infra\casa_app_backend.Infra.csproj -s .\casa_app_backend.Api\casa_app_backend.Api.csproj
+
+dotnet-ef migrations add "sql_serve_migration" -p .\IndicadoresSustentabilidade.Infra\IndicadoresSustentabilidade.Infra.csproj -s .\IndicadoresSustentabilidade.Api\IndicadoresSustentabilidade.Api.csproj
