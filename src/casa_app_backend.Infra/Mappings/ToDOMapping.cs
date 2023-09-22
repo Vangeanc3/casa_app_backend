@@ -15,7 +15,7 @@ namespace casa_app_backend.Infra.Mappings
                .HasForeignKey(t => t.CreatedById);
 
             builder.HasOne(t => t.AssignedTo)
-                .WithMany(c => c.ToDosAssigned)
+                .WithMany(u => u.ToDosAssigned)
                 .HasForeignKey(t => t.AssignedToId);
 
             builder.HasOne(t => t.Category)

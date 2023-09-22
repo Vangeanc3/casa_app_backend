@@ -12,8 +12,7 @@ namespace casa_app_backend.Infra.Mappings
 
             builder.HasOne(u => u.Contract)
                 .WithMany(c => c.UsersOfContract)
-                .HasForeignKey(u => u.ContractId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(u => u.ContractId);
         }
     }
 }
