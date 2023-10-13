@@ -9,12 +9,24 @@ using Microsoft.AspNetCore.Mvc;
 namespace casa_app_backend.Controllers
 {
     [ApiController]
-    [Route("v1/place")]
+    [Route("place")]
     [Authorize]
     public class PlaceController : BaseCrudController<Place, PlaceVm, PlaceNewVm, PlaceUpdateVm>
     {
         public PlaceController(IMapper mapper, IBaseService<Place> baseService) : base(mapper, baseService)
         {
+        }
+
+        [ProducesResponseType(typeof(RetornoPadrao<List<UserVm>>), StatusCodes.Status200OK)]
+        public override Task<IActionResult> List()
+        {
+            return base.List();
+        }
+
+        [ProducesResponseType(typeof(RetornoPadrao<UserVm>), StatusCodes.Status200OK)]
+        public override Task<IActionResult> Get(int id)
+        {
+            return base.Get(id);
         }
     }
 }

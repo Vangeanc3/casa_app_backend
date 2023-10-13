@@ -18,7 +18,9 @@ namespace casa_app_backend.Infra.Repository
         }
         public virtual async Task<List<T>> List()
         {
-            return await dbSet.AsNoTracking().ToListAsync();
+            // return await dbSet.AsNoTracking().ToListAsync();
+            // ESTOU USANDO O Lazy Loading Proxies, portanto não é possivel usar o AsNoTracking()
+            return await dbSet.ToListAsync();
         }
         public virtual async Task<T> Get(int id)
         {

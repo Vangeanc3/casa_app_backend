@@ -7,11 +7,23 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace casa_app_backend.Controllers
 {
-    [Route("v1/vehicle")]
+    [Route("vehicle")]
     public class VehicleController : BaseCrudController<Vehicle, VehicleVm, VehicleNewVm, VehicleUpdateVm>
     {
         public VehicleController(IMapper mapper, IBaseService<Vehicle> baseService) : base(mapper, baseService)
         {
+        }
+
+        [ProducesResponseType(typeof(RetornoPadrao<List<VehicleVm>>), StatusCodes.Status200OK)]
+        public override Task<IActionResult> List()
+        {
+            return base.List();
+        }
+
+        [ProducesResponseType(typeof(RetornoPadrao<VehicleVm>), StatusCodes.Status200OK)]
+        public override Task<IActionResult> Get(int id)
+        {
+            return base.Get(id);
         }
     }
 }

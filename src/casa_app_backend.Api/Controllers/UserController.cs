@@ -7,11 +7,24 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace casa_app_backend.Controllers
 {
-    [Route("v1/user")]
+    [Route("user")]
     public class UserController : BaseCrudController<User, UserVm, UserNewVm, UserUpdateVm>
     {
         public UserController(IMapper mapper, IBaseService<User> baseService) : base(mapper, baseService)
         {
         }
+
+        [ProducesResponseType(typeof(RetornoPadrao<List<UserVm>>), StatusCodes.Status200OK)]
+        public override Task<IActionResult> List()
+        {
+            return base.List();
+        }
+
+        [ProducesResponseType(typeof(RetornoPadrao<UserVm>), StatusCodes.Status200OK)]
+        public override Task<IActionResult> Get(int id)
+        {
+            return base.Get(id);
+        }
+
     }
 }
