@@ -13,7 +13,7 @@ namespace casa_app_backend.Api.ViewModels
         public WorkerType WorkerType { get; set; }
         public string Name { get; set; } = null!;
         public int ContractId { get; set; }
-        public virtual Contract Contract { get; set; } = null!;
+        public object Contract { get; set; } = null!;
         public string GuestEmail { get; set; } = null!;
         public string? GuestPhone { get; set; }
     }

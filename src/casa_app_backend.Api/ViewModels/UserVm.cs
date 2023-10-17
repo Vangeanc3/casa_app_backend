@@ -15,10 +15,10 @@ namespace casa_app_backend.Api.ViewModels
         public string? BirthDay { get; set; }
         public bool IsOwner { get; set; } = false; // DONO DE CONTRATO 
         public int? ContractId { get; set; } // CONTRATO A QUAL ELE PERTENCE
-        public virtual Contract? Contract { get; set; }
+        public object? Contract { get; set; }
         public string? Cpf { get; set; }
-        public virtual List<ToDo>? ToDosCreated { get; set; }
-        public virtual List<ToDo>? ToDosAssigned { get; set; }
+        public object? ToDosCreated { get; set; }
+        public object? ToDosAssigned { get; set; }
     }
 
     public class UserNewVm

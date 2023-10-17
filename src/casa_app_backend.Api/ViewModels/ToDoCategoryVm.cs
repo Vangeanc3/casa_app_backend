@@ -8,10 +8,10 @@ namespace casa_app_backend.Api.ViewModels
         public int Id { get; set; }
         public string Name { get; set; } = null!;
         public int? BaseCategoryId { get; set; }
-        public virtual ToDoCategory? BaseCategory { get; set; }
-        public virtual List<ToDoCategory>? Categories { get; set; }
+        public virtual ToDoCategoryVm? BaseCategory { get; set; }
+        public virtual List<ToDoCategoryVm>? Categories { get; set; }
         public virtual List<ToDoDefault>? ToDoDefaults { get; set; }
-        public virtual List<ToDo>? ToDos { get; set; }
+        public virtual List<ToDoVm>? ToDos { get; set; }
     }
     public class ToDoCategoryNewVm
     {

@@ -11,7 +11,7 @@ namespace casa_app_backend.Api.ViewModels
         public WorkerType Type { get; set; }
         public GenderType Gender { get; set; }
         public int HouseId { get; set; }
-        public virtual HouseConfig House { get; set; } = null!;
+        public object House { get; set; } = null!;
     }
 
     public class WorkerNewVm

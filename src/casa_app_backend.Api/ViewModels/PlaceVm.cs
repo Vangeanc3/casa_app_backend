@@ -1,5 +1,4 @@
 using casa_app_backend.Domain.Enums;
-using casa_app_backend.Domain.Models;
 
 namespace casa_app_backend.Api.ViewModels
 {
@@ -10,8 +9,8 @@ namespace casa_app_backend.Api.ViewModels
         public PlaceType Type { get; set; }
         public bool AssignTask { get; set; } = true;
         public int HouseId { get; set; }
-        public virtual HouseConfig House { get; set; } = null!;
-        public virtual List<ToDo>? ToDos { get; set; }
+        public virtual HouseConfigVm House { get; set; } = null!;
+        public virtual List<ToDoVm>? ToDos { get; set; }
     }
     public class PlaceNewVm
     {

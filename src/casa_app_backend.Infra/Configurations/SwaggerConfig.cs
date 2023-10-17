@@ -45,8 +45,8 @@ namespace casa_app_backend.Infra.Configurations
 
         public static void UseSwaggerSetup(this IApplicationBuilder app)
         {
-            _ = app.UseSwagger();
-            _ = app.UseSwaggerUI(c =>
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
             {
                 string swaggerJsonBasePath = string.IsNullOrWhiteSpace(c.RoutePrefix) ? "." : "..";
                 c.SwaggerEndpoint($"{swaggerJsonBasePath}/swagger/v1/swagger.json", "v1");

@@ -14,8 +14,8 @@ namespace casa_app_backend.Api.ViewModels
         public PetType Type { get; set; }
         public int HouseId { get; set; }
         public bool AssignTask { get; set; } = true;
-        public virtual List<ToDo>? ToDos { get; set; }
-        public virtual HouseConfig House { get; set; } = null!;
+        public object? ToDos { get; set; }
+        public object House { get; set; } = null!;
     }
     public class PetNewVm
     {
